@@ -1,0 +1,17 @@
+{
+  "name": "spec-to-repo-bootstrap",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bootstrap:demo": "tsx scripts/run-bootstrap-demo.ts"
+  },
+  "dependencies": {
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.3",
+    "@types/node": "^24.0.0"
+  }
+}
