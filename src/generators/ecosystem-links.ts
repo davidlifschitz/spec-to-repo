@@ -18,12 +18,28 @@ export type EcosystemLink = {
   reason: string;
 };
 
+const DEFAULT_BACKBONE_IDS = ['agentic-os', 'spec-to-repo', 'children-of-israel-agent-swarm', 'graphify'];
+
 export function buildEcosystemLinks(registry: RegistryBundle, projectId: string): EcosystemLink[] {
   const allProjects = registry.projects.projects;
   const current = allProjects.find((project) => project.id === projectId);
 
   if (!current) {
-    throw new Error(`Unknown project: ${projectId}`);
+    return allProjects
+      .filter((project) => DEFAULT_BACKBONE_IDS.includes(project.id))
+      .map((project) => ({
+        id: project.id,
+        repo: project.repo,
+        role: project.role,
+        reason:
+          project.id === 'agentic-os'
+            ? 'Control-plane source of truth for registries and contracts'
+            : project.id === 'spec-to-repo'
+              ? 'Bootstrap generator for the first ecosystem scaffold flow'
+              : project.id === 'children-of-israel-agent-swarm'
+                ? 'Delegated execution engine for long-running or wrapped tasks'
+                : 'Shared memory and artifact retrieval layer for emitted outputs'
+      }));
   }
 
   const dependencies = new Set(current.dependencies ?? []);
