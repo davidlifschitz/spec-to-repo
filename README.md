@@ -57,6 +57,28 @@ OPENROUTER_API_KEY=sk-or-v1-your_openrouter_key
 
 ## Usage
 
+### Stable bootstrap entrypoint
+
+For ecosystem callers, use the bootstrap-specific task entrypoint instead of wiring directly to the demo runner:
+
+```bash
+npm install
+npm run bootstrap:task -- \
+  --agentic-os ../agentic-os \
+  --task ../agentic-os/examples/tasks/bootstrap-spec-to-repo.task.json \
+  --output demo-output/bootstrap-spec-to-repo
+```
+
+This surface stays scoped to the shared `agentic-os` `repo.bootstrap` task contract and preserves the current emitted artifacts plus `summary.json` output. The existing `bootstrap:demo` command remains available as a fixture-friendly wrapper around the same runtime path.
+
+### Validation path
+
+```bash
+npm run validate:bootstrap -- --agentic-os ../agentic-os
+```
+
+This runs the stable bootstrap entrypoint against the proven `agentic-os` fixture and writes the same artifact bundle into `demo-output/bootstrap-spec-to-repo`.
+
 ### Basic Usage
 
 ```bash
