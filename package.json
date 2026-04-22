@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "bootstrap:demo": "tsx scripts/run-bootstrap-demo.ts"
+    "bootstrap:task": "tsx scripts/run-bootstrap-task.ts",
+    "bootstrap:demo": "tsx scripts/run-bootstrap-demo.ts",
+    "validate:bootstrap": "npm run bootstrap:task -- --agentic-os ../agentic-os --task ../agentic-os/examples/tasks/bootstrap-spec-to-repo.task.json --output demo-output/bootstrap-spec-to-repo"
   },
   "dependencies": {
     "yaml": "^2.8.1"
